@@ -7,8 +7,10 @@ from typing import Dict, Any, List
 
 from dotenv import load_dotenv
 
-# Load .env from project root regardless of working directory
-load_dotenv(Path(__file__).parent.parent / ".env", override=True)
+# Load .env from project root (local dev). On Streamlit Cloud, os.environ
+# is already populated by the st.secrets block in ui/app.py before any
+# graph node runs, so this is a no-op there (override=False).
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 
 def _severity_colour(sev: str) -> str:

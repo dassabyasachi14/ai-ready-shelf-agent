@@ -11,17 +11,25 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import streamlit as st
 from dotenv import load_dotenv
 
-# Load .env locally; on Streamlit Cloud secrets are already in os.environ
-load_dotenv(Path(__file__).parent.parent / ".env", override=False)
+# ── Secrets loading ──────────────────────────────────────────────────────────
+# Priority: Streamlit Cloud st.secrets → local .env file → existing os.environ
 
-# Streamlit Cloud: pull secrets into os.environ if st.secrets is available
-try:
-    import streamlit as _st_secrets_check
-    for _k, _v in _st_secrets_check.secrets.items():
-        if isinstance(_v, str):
-            os.environ.setdefault(_k, _v)
-except Exception:
-    pass
+_SECRET_KEYS = [
+    "ANTHROPIC_API_KEY",
+    "SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD",
+]
+
+# 1. Streamlit Cloud: read each key from st.secrets into os.environ
+for _k in _SECRET_KEYS:
+    try:
+        _v = st.secrets[_k]
+        if _v:
+            os.environ[_k] = str(_v)
+    except Exception:
+        pass
+
+# 2. Local development: fill any remaining keys from .env file
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 from graph.graph import compiled_graph
 
