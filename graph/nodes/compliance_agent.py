@@ -1,15 +1,12 @@
 import json
-import os
 from typing import Any, Dict
 
 import anthropic
-from dotenv import load_dotenv
 
 from utils.guidelines_loader import load_brand_guidelines, load_retailer_rules, load_ai_criteria
 from utils.json_parser import extract_json
 from utils.scorer import calculate_scores
-
-load_dotenv()
+from utils.config import get_secret
 
 MODEL = "claude-sonnet-4-20250514"
 
@@ -98,7 +95,7 @@ def compliance_agent_node(state: dict) -> dict:
         ai_criteria=json.dumps(ai_criteria, indent=2),
     )
 
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = anthropic.Anthropic(api_key=get_secret("ANTHROPIC_API_KEY"))
     message = client.messages.create(
         model=MODEL,
         max_tokens=4096,

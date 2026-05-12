@@ -1,13 +1,10 @@
 import json
-import os
 
 import anthropic
-from dotenv import load_dotenv
 
 from utils.guidelines_loader import load_brand_guidelines, load_retailer_rules
 from utils.json_parser import extract_json
-
-load_dotenv()
+from utils.config import get_secret
 
 MODEL = "claude-sonnet-4-20250514"
 
@@ -71,7 +68,7 @@ def recovery_generator_node(state: dict) -> dict:
         walmart_rules=json.dumps(walmart_rules, indent=2),
     )
 
-    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    client = anthropic.Anthropic(api_key=get_secret("ANTHROPIC_API_KEY"))
     message = client.messages.create(
         model=MODEL,
         max_tokens=4096,

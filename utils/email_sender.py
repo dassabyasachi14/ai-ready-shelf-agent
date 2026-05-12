@@ -6,10 +6,8 @@ from pathlib import Path
 from typing import Dict, Any, List
 
 from dotenv import load_dotenv
+from utils.config import get_secret
 
-# Load .env from project root (local dev). On Streamlit Cloud, os.environ
-# is already populated by the st.secrets block in ui/app.py before any
-# graph node runs, so this is a no-op there (override=False).
 load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 
@@ -187,11 +185,11 @@ def build_html_report(result: Dict[str, Any]) -> str:
 
 
 def send_report(to_email: str, result: Dict[str, Any]) -> None:
-    host     = os.getenv("SMTP_HOST", "smtp.gmail.com")
-    port     = int(os.getenv("SMTP_PORT", "587"))
-    user     = os.getenv("SMTP_USER", "").strip()
+    host     = get_secret("SMTP_HOST", "smtp.gmail.com")
+    port     = int(get_secret("SMTP_PORT", "587"))
+    user     = get_secret("SMTP_USER", "").strip()
     # Google app passwords are shown with spaces (xxxx xxxx xxxx xxxx) — strip them
-    password = os.getenv("SMTP_PASSWORD", "").replace(" ", "").strip()
+    password = get_secret("SMTP_PASSWORD", "").replace(" ", "").strip()
 
     if not user or not password:
         raise ValueError("SMTP_USER and SMTP_PASSWORD must be set in .env")
