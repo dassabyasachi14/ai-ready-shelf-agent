@@ -1,0 +1,89 @@
+{
+  "brand_naming": {
+    "IAMS": {
+      "correct_spelling": "IAMS",
+      "capitalisation": "ALL CAPS — exception to title-case rule on all retailers",
+      "prohibited_variations": ["Iams", "iams"]
+    },
+    "Pedigree": {
+      "correct_spelling": "Pedigree",
+      "capitalisation": "Title case only",
+      "prohibited_variations": ["PEDIGREE", "pedigree"]
+    }
+  },
+  "approved_claims": {
+    "iams_minichunks": [
+      "Real chicken is the #1 ingredient",
+      "Veterinarians recommend IAMS",
+      "No artificial flavors or preservatives",
+      "Supports healthy digestion with prebiotics and natural fiber",
+      "L-Carnitine supports fat metabolism and healthy weight",
+      "100% complete and balanced for adult maintenance",
+      "AAFCO complete and balanced for adult dogs",
+      "Omega-6 and Omega-3 fatty acids support healthy skin and coat",
+      "Enriched with antioxidants to support immune system",
+      "Supports strong muscles with protein from chicken and egg",
+      "No fillers",
+      "Made with wholesome grains for healthy energy"
+    ],
+    "iams_largebreed": [
+      "Real chicken is the #1 ingredient",
+      "Veterinarians recommend IAMS",
+      "No artificial flavors or preservatives",
+      "100% complete and balanced for adult maintenance",
+      "AAFCO complete and balanced for adult dogs",
+      "Supports healthy digestion with prebiotics",
+      "Supports strong muscles with protein from chicken and egg",
+      "Formulated for large breed adult dogs",
+      "Supports bone and joint health",
+      "0% fillers"
+    ],
+    "pedigree_compnutr": [
+      "100% complete and balanced for adult dogs",
+      "36 vitamins, minerals, and amino acids",
+      "Prebiotic fiber to support healthy digestion",
+      "Omega-6 Fatty Acid and Zinc to help nourish healthy skin and coat",
+      "No high fructose corn syrup",
+      "No artificial flavors",
+      "No added sugar",
+      "Made in the USA",
+      "Supports everyday health and natural vitality",
+      "Antioxidants, vitamins, and minerals to help maintain a healthy lifestyle",
+      "Crunchy kibble helps clean teeth"
+    ]
+  },
+  "prohibited_claims_all_brands": [
+    "Best dog food", "Superior to", "Better than", "Clinically proven",
+    "Cures", "Prevents disease", "Guaranteed results", "World's best", "Award winning"
+  ],
+  "regulatory_rules": [
+    {
+      "rule_id": "aafco_growth_language",
+      "rule": "No growth language in adult food",
+      "description": "The word 'growth' in an adult dog food violates AAFCO life stage definitions. Growth is reserved for puppy formulas. Adult food must use 'adult maintenance' language.",
+      "severity": "critical",
+      "source": "AAFCO Dog Food Nutrient Profiles"
+    },
+    {
+      "rule_id": "aafco_natural_definition",
+      "rule": "Natural claim accuracy",
+      "description": "Cannot claim 'natural' alongside synthetic artificial colours or preservatives without a qualifying disclaimer.",
+      "severity": "high",
+      "source": "AAFCO natural definition"
+    },
+    {
+      "rule_id": "vet_recommended_substantiation",
+      "rule": "Vet recommendation must be substantiated",
+      "description": "IAMS has documented basis for vet recommendation claim. Pedigree does not — this claim must not appear on Pedigree listings.",
+      "severity": "high",
+      "source": "FTC advertising substantiation guidelines"
+    },
+    {
+      "rule_id": "ingredient_transparency",
+      "rule": "No misleading omission of controversial ingredients",
+      "description": "Content must not be misleading about ingredient composition. Controversial ingredients present in formula (BHA, artificial colours) must not be concealed by content claiming only natural ingredients.",
+      "severity": "critical",
+      "source": "FTC deceptive advertising guidelines"
+    }
+  ]
+}

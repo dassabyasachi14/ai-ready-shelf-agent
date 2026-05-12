@@ -1,0 +1,61 @@
+{
+  "retailer": "Walmart",
+  "ai_assistant": "Sparky",
+  "title": {
+    "ideal_max_characters": 90,
+    "hard_max_characters": 100,
+    "formula": "Brand + Product Line + Pet Food Flavor + Pet Food Condition + Pet Food Form + Dry Dog Food + Animal Lifestage + Nutrient Content Claims + Size + Container Type",
+    "rules": [
+      "No standalone 'dog' or 'cat' — must use full 'Adult Dog Food' or 'Dry Dog Food' phrasing",
+      "Sizing must be lowercase — lb. and oz. not LB or OZ"
+    ],
+    "prohibited_in_title": ["Uppercase sizing", "Special characters: ®, TM, *, !, ?"]
+  },
+  "bullets": {
+    "minimum_count": 4,
+    "recommended_count": 6,
+    "rules": [
+      "Begin each bullet with a capital letter",
+      "Sentence fragments — not full sentences",
+      "No ending punctuation",
+      "Do not open with the word 'contains'",
+      "# symbol is permitted",
+      "No special characters: *, !"
+    ]
+  },
+  "description": {
+    "min_words": 60,
+    "recommended_words": 150,
+    "format": "HTML paragraph: <p>text here</p>",
+    "rules": [
+      "Paragraph form only — no bullet points",
+      "Repeat product name and keywords for SEO"
+    ]
+  },
+  "images": {
+    "hero_image_required": true,
+    "secondary_images_recommended": 9
+  },
+  "general_rules": [
+    {
+      "rule_id": "brand_capitalisation",
+      "rule": "Brand capitalised but NOT all caps — IAMS is the only exception",
+      "severity": "critical"
+    },
+    {
+      "rule_id": "no_made_in_usa",
+      "rule": "No domestic origin claims — no 'Made in USA', 'US Chicken', 'US Facilities', or equivalent including 'Domestically crafted'",
+      "severity": "critical"
+    },
+    {
+      "rule_id": "no_standalone_disclaimers",
+      "rule": "Disclaimers must be integrated within copy — no asterisk (*) disclaimers",
+      "severity": "high"
+    },
+    {
+      "rule_id": "no_special_characters",
+      "rule": "No ®, TM, (*), or similar special characters in any content field",
+      "severity": "high"
+    }
+  ]
+}

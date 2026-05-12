@@ -1,0 +1,42 @@
+{
+  "retailer": "Walmart",
+  "ai_assistant": "Sparky",
+  "behaviour_summary": "Sparky launched June 2025, live in Walmart app, ChatGPT, and Google Gemini. Rewards structured, attribute-complete listings. Prefers specific verifiable claims over narrative marketing.",
+  "scoring_note": "Score each dimension and sum. Raw total out of 100 × 0.30 = contribution to overall score.",
+  "scoring_dimensions": [
+    {
+      "id": "structured_attribute_completeness",
+      "label": "Structured attribute completeness",
+      "max_points": 35,
+      "key_attributes": ["life stage", "breed size", "primary protein", "grain inclusion", "pack size", "flavour", "health benefit"],
+      "full_points_when": "6–7 key attributes present and accurate",
+      "partial_points_when": "3–5 attributes present",
+      "zero_when": "Fewer than 3 attributes determinable"
+    },
+    {
+      "id": "claim_specificity",
+      "label": "Claim specificity and clarity",
+      "max_points": 30,
+      "full_points_when": "Claims are short, specific, and structured — concrete facts a shopper can act on",
+      "partial_points_when": "Mix of specific and vague claims",
+      "zero_when": "Majority of content is narrative marketing without specific facts"
+    },
+    {
+      "id": "no_prohibited_superlatives",
+      "label": "No prohibited superlatives",
+      "max_points": 15,
+      "full_points_when": "No prohibited superlatives",
+      "partial_points_when": "One present",
+      "zero_when": "Multiple present",
+      "prohibited_terms": ["world's finest", "best", "great tasting", "amazing", "premium", "superior", "domestically crafted"]
+    },
+    {
+      "id": "occasion_intent_relevance",
+      "label": "Occasion and intent relevance",
+      "max_points": 20,
+      "full_points_when": "Content addresses 2+ shopper intents (sensitive stomach, large breed, weight management, active dogs)",
+      "partial_points_when": "One intent signal present",
+      "zero_when": "Generic content with no intent specificity"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "retailer": "Amazon",
+  "ai_assistant": "Rufus",
+  "title": {
+    "max_characters": 200,
+    "recommended_max": 150,
+    "rules": [
+      "Must include brand name and product size",
+      "Sentence case — not all caps except brand names designed as all caps",
+      "Same word may not appear more than twice (prepositions, articles, conjunctions excepted)",
+      "No promotional language"
+    ],
+    "prohibited_characters": ["!", "$", "?", "_", "{", "}", "^", "¬", "¦"],
+    "allowed_separators": ["|", "-"],
+    "prohibited_terms": [
+      "Best Seller", "Top Quality", "Free Shipping", "#1 rated",
+      "Amazing", "Sale", "Limited Time", "Buy Now", "100% Guarantee"
+    ]
+  },
+  "bullets": {
+    "recommended_count": 5,
+    "max_count": 5,
+    "max_characters_per_bullet": 200,
+    "rules": [
+      "Lead with a benefit or key feature",
+      "No pricing, promotional claims, or competitor mentions",
+      "No ALL CAPS text",
+      "No abbreviations",
+      "No hyphens or exclamation points",
+      "No shipping or seller information",
+      "No vague statements without specificity"
+    ],
+    "prohibited_promotional_words": [
+      "easy", "safe", "effective", "amazing", "incredible", "best",
+      "great tasting", "guaranteed", "proven", "revolutionary",
+      "premium", "world's finest", "superior"
+    ]
+  },
+  "description": {
+    "min_characters": 100,
+    "max_characters": 2000,
+    "rules": [
+      "Plain text or basic HTML",
+      "No bullet points within description",
+      "No pricing claims"
+    ]
+  },
+  "prohibited_language": {
+    "superlatives": ["world's finest", "world's best", "finest ingredients", "greatest", "unmatched"],
+    "subjective": ["great tasting", "delicious", "amazing", "incredible"],
+    "promotional": ["on sale", "limited time", "buy now", "free shipping"]
+  },
+  "general_rules": [
+    "No false product identification information",
+    "No misleading content",
+    "Product content must accurately represent the product"
+  ]
+}

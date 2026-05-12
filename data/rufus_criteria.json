@@ -1,0 +1,66 @@
+{
+  "retailer": "Amazon",
+  "ai_assistant": "Rufus",
+  "behaviour_summary": "Rufus synthesises listing copy, reviews, and Q&A to recommend products. Rewards descriptive, review-aligned, fact-dense content that answers natural language shopper questions.",
+  "scoring_note": "Score each dimension and sum. Raw total out of 100 × 0.30 = contribution to overall score.",
+  "scoring_dimensions": [
+    {
+      "id": "named_protein_source",
+      "label": "Named protein source",
+      "max_points": 15,
+      "full_points_when": "Named protein in title AND first or second bullet (e.g. 'Real chicken is the #1 ingredient')",
+      "partial_points_when": "Named protein present but not prominently featured",
+      "zero_when": "Protein source vague or generic (e.g. 'animal protein', 'meat meal')"
+    },
+    {
+      "id": "fact_density",
+      "label": "Fact density",
+      "max_points": 20,
+      "full_points_when": "Majority of bullets contain specific verifiable facts with numbers, named ingredients, or named mechanisms",
+      "partial_points_when": "Mix of specific facts and generic claims",
+      "zero_when": "Majority of content is generic marketing language"
+    },
+    {
+      "id": "life_stage_explicit",
+      "label": "Life stage explicit and accurate",
+      "max_points": 10,
+      "full_points_when": "Life stage stated correctly using AAFCO language (Adult, Puppy, Senior)",
+      "partial_points_when": "Life stage present but ambiguous",
+      "zero_when": "Life stage absent or incorrect"
+    },
+    {
+      "id": "functional_ingredients_named",
+      "label": "Functional ingredients named with benefit",
+      "max_points": 15,
+      "full_points_when": "3+ functional ingredients named with mechanism (e.g. 'L-Carnitine supports fat metabolism')",
+      "partial_points_when": "1–2 functional ingredients named",
+      "zero_when": "No functional ingredients named — generic benefit claims only"
+    },
+    {
+      "id": "no_prohibited_superlatives",
+      "label": "No prohibited superlatives",
+      "max_points": 15,
+      "full_points_when": "No prohibited superlatives anywhere in title, bullets, or description",
+      "partial_points_when": "One prohibited superlative present",
+      "zero_when": "Multiple prohibited superlatives present",
+      "prohibited_terms": ["great tasting", "world's finest", "finest ingredients", "best", "amazing", "superior"]
+    },
+    {
+      "id": "aafco_visible",
+      "label": "AAFCO statement visible",
+      "max_points": 10,
+      "full_points_when": "AAFCO explicitly mentioned in bullets or description with life stage",
+      "partial_points_when": "AAFCO referenced without life stage specificity",
+      "zero_when": "AAFCO not mentioned in visible content"
+    },
+    {
+      "id": "attribute_completeness",
+      "label": "Attribute completeness",
+      "max_points": 15,
+      "key_attributes": ["life stage", "breed size", "primary protein", "grain inclusion", "pack size", "health benefit"],
+      "full_points_when": "5–6 key attributes clearly stated",
+      "partial_points_when": "3–4 attributes present",
+      "zero_when": "Fewer than 3 attributes determinable"
+    }
+  ]
+}
