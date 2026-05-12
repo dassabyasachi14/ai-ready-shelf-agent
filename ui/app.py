@@ -425,7 +425,7 @@ st.markdown(
     f'<div class="app-header">'
     f'<div class="app-icon"><img src="{_LOGO_SRC}" alt="Mars Petcare" /></div>'
     f'<div>'
-    f'<h1 style="color:#003DA5 !important;font-size:28px;font-weight:800;margin:0 0 4px;line-height:1.15;letter-spacing:-0.5px">Digital Shelf Compliance Copilot</h1>'
+    f'<div style="color:#003DA5;font-size:28px;font-weight:800;margin:0 0 4px;line-height:1.15;letter-spacing:-0.5px">Digital Shelf Compliance Copilot</div>'
     f'<p>Mars Petcare · Dry Dog Food · Amazon &amp; Walmart</p>'
     f'</div>'
     f'</div>',
