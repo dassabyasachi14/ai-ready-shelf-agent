@@ -12,24 +12,30 @@ import streamlit as st
 from dotenv import load_dotenv
 
 # ── Secrets loading ──────────────────────────────────────────────────────────
-# Priority: Streamlit Cloud st.secrets → local .env file → existing os.environ
+# Step 1: local .env (no-op on Streamlit Cloud where there is no .env file)
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
-_SECRET_KEYS = [
-    "ANTHROPIC_API_KEY",
-    "SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD",
-]
-
-# 1. Streamlit Cloud: read each key from st.secrets into os.environ
+# Step 2: Streamlit Cloud secrets — override=True so cloud always wins
+_SECRET_KEYS = ["ANTHROPIC_API_KEY", "SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASSWORD"]
 for _k in _SECRET_KEYS:
     try:
-        _v = st.secrets[_k]
+        _v = st.secrets[_k]          # raises FileNotFoundError locally, KeyError if missing
         if _v:
-            os.environ[_k] = str(_v)
+            os.environ[_k] = str(_v) # always overwrite so cloud value is authoritative
+    except (KeyError, FileNotFoundError):
+        pass                          # local dev: key lives in .env, already loaded above
     except Exception:
-        pass
+        pass                          # any other Streamlit internals error — skip
 
-# 2. Local development: fill any remaining keys from .env file
-load_dotenv(Path(__file__).parent.parent / ".env", override=False)
+# Step 3: Hard fail early if the API key is still missing — show a clear message
+if not os.environ.get("ANTHROPIC_API_KEY"):
+    st.error(
+        "⚠️ **ANTHROPIC_API_KEY is not configured.**\n\n"
+        "**Streamlit Cloud:** Go to your app Settings → Secrets and add:\n"
+        "```\nANTHROPIC_API_KEY = \"sk-ant-api03-...\"\n```\n"
+        "**Local:** Add the key to your `.env` file."
+    )
+    st.stop()
 
 from graph.graph import compiled_graph
 

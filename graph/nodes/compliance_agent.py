@@ -1,12 +1,12 @@
 import json
 from typing import Any, Dict
 
+import os
 import anthropic
 
 from utils.guidelines_loader import load_brand_guidelines, load_retailer_rules, load_ai_criteria
 from utils.json_parser import extract_json
 from utils.scorer import calculate_scores
-from utils.config import get_secret
 
 MODEL = "claude-sonnet-4-20250514"
 
@@ -95,7 +95,7 @@ def compliance_agent_node(state: dict) -> dict:
         ai_criteria=json.dumps(ai_criteria, indent=2),
     )
 
-    client = anthropic.Anthropic(api_key=get_secret("ANTHROPIC_API_KEY"))
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     message = client.messages.create(
         model=MODEL,
         max_tokens=4096,
