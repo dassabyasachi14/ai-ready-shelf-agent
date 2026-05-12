@@ -125,10 +125,10 @@ section[data-testid="stMain"] > div { padding-top: 0 !important; }
 }
 .app-header h1 {
   font-size: 28px; font-weight: 800;
-  color: #0F172A !important; margin: 0 0 4px; line-height: 1.15;
+  color: #003DA5 !important; margin: 0 0 4px; line-height: 1.15;
   letter-spacing: -0.5px;
 }
-.app-header p { font-size: 14px; color: #64748B !important; margin: 0; font-weight: 400; }
+.app-header p { font-size: 14px; color: #E4002B !important; margin: 0; font-weight: 600; }
 
 /* ── Streamlit widget inputs ── */
 .stSelectbox > div > div,
