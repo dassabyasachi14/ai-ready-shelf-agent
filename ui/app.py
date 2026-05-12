@@ -57,7 +57,7 @@ def _md(html: str, **kwargs) -> None:
 # ── Page config ──────────────────────────────────────────────────────────────
 
 st.set_page_config(
-    page_title="AI-Ready Digital Shelf Agent",
+    page_title="Digital Shelf Compliance Copilot",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -425,7 +425,7 @@ st.markdown(
     f'<div class="app-header">'
     f'<div class="app-icon"><img src="{_LOGO_SRC}" alt="Mars Petcare" /></div>'
     f'<div>'
-    f'<h1>AI-Ready Digital Shelf Agent</h1>'
+    f'<h1>Digital Shelf Compliance Copilot</h1>'
     f'<p>Mars Petcare · Dry Dog Food · Amazon &amp; Walmart</p>'
     f'</div>'
     f'</div>',
