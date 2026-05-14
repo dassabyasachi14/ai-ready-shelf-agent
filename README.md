@@ -137,11 +137,12 @@ Open `.env` and fill in your values:
 
 ## ▶️ Run Instructions
 
-### Run locally
-```bash
-streamlit run ui/app.py
-```
-The app opens at **http://localhost:8501**
+### 🌐 Live App (Hosted)
+The app is deployed and publicly accessible at:
+
+**[https://digital-shelf-agent.streamlit.app/](https://digital-shelf-agent.streamlit.app/)**
+
+No installation required — open the URL and start analysing.
 
 ### Using the app
 1. Select a **SKU** from the dropdown (IAMS MiniChunks, IAMS Large Breed, or Pedigree Complete Nutrition)
@@ -153,19 +154,11 @@ The app opens at **http://localhost:8501**
 7. Use **Email this report** to send the full gap report to any recipient
 8. View all past runs in the **Agent Run Logs** tab
 
-### Deploy to Streamlit Community Cloud
-1. Push this repo to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io) → sign in with GitHub → **New app**
-3. Set **Main file path:** `ui/app.py`
-4. Under **Advanced settings → Secrets**, add:
-```toml
-ANTHROPIC_API_KEY = "sk-ant-api03-..."
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = "587"
-SMTP_USER = "your-email@gmail.com"
-SMTP_PASSWORD = "xxxx xxxx xxxx xxxx"
+### 💻 Run Locally (Optional)
+```bash
+streamlit run ui/app.py
 ```
-5. Click **Deploy** — live in ~2 minutes
+The app opens at **http://localhost:8501**
 
 ---
 
