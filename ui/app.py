@@ -467,6 +467,180 @@ with st.container(border=True):
         st.markdown('<p style="font-size:12px;color:#374151;font-weight:500;margin-bottom:4px">&nbsp;</p>', unsafe_allow_html=True)
         run_analysis = st.button("▶ Analyze shelf", type="primary", use_container_width=True)
 
+# ── Scoring Logic popover (sits between controls and tabs, always visible) ────
+_, _score_col = st.columns([3, 1])
+with _score_col:
+    with st.popover("📐 Scoring Logic", use_container_width=True):
+        _md("""
+        <div style="font-size:13px;color:#1E40AF;font-weight:700;margin-bottom:1rem;
+                    padding-bottom:.5rem;border-bottom:2px solid #EFF6FF">
+          📐 How listings are scored
+        </div>
+
+        <p style="font-size:12px;color:#475569;margin-bottom:1rem;line-height:1.6">
+          Every listing is scored out of <strong>100 points</strong> across three sections.
+          Sections A and B use <strong>deduction-based</strong> scoring (start at max, subtract for violations).
+          Section C uses <strong>additive</strong> scoring (points awarded per dimension).
+        </p>
+        """)
+
+        _md("""
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+                    color:#1E40AF;margin-bottom:.5rem">
+          Section A — Brand Compliance &nbsp;<span style="color:#64748B;font-weight:400;font-size:11px">max 40 pts</span>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:1rem">
+          <tr style="background:#F8FAFC">
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Severity</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Deduction</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Example violations</th>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0"><span style="color:#991B1B;font-weight:600">Critical</span></td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#DC2626;font-weight:700">−20 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Ingredient transparency, AAFCO growth language</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0"><span style="color:#92400E;font-weight:600">High</span></td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#D97706;font-weight:700">−10 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Unsubstantiated vet claim, natural claim inaccuracy</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0"><span style="color:#92400E;font-weight:600">Medium</span></td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#D97706;font-weight:700">−5 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Minor brand naming inconsistency</td>
+          </tr>
+        </table>
+        """)
+
+        _md("""
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+                    color:#1E40AF;margin-bottom:.5rem">
+          Section B — Platform Rules &nbsp;<span style="color:#64748B;font-weight:400;font-size:11px">max 30 pts</span>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:.5rem">
+          <tr style="background:#F8FAFC">
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Severity</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Deduction</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Example violations</th>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0"><span style="color:#991B1B;font-weight:600">Critical</span></td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#DC2626;font-weight:700">−15 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Title over 100 chars (Walmart), all-caps brand name, "Made in USA" claim</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0"><span style="color:#92400E;font-weight:600">High</span></td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#D97706;font-weight:700">−8 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Special characters (®, TM), standalone disclaimers, bullet opens with "Contains"</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0"><span style="color:#92400E;font-weight:600">Medium</span></td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#D97706;font-weight:700">−4 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Uppercase sizing (LB vs lb.), fewer than recommended bullets</td>
+          </tr>
+        </table>
+        <p style="font-size:11px;color:#64748B;margin-bottom:1rem">
+          ℹ️ Walmart ideal title: 90 chars · Hard limit: 100 chars &nbsp;|&nbsp; Amazon max: 200 chars
+        </p>
+        """)
+
+        _md("""
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+                    color:#1E40AF;margin-bottom:.5rem">
+          Section C — AI-Readiness &nbsp;<span style="color:#64748B;font-weight:400;font-size:11px">max 30 pts · additive</span>
+        </div>
+        <p style="font-size:11.5px;color:#475569;margin-bottom:.5rem">
+          Raw dimension scores sum to 100, then scaled × 0.30 for the final contribution.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:.75rem">
+          <tr style="background:#F8FAFC">
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Dimension</th>
+            <th style="padding:6px 10px;text-align:center;border:1px solid #E2E8F0;color:#475569">Amazon Rufus</th>
+            <th style="padding:6px 10px;text-align:center;border:1px solid #E2E8F0;color:#475569">Walmart Sparky</th>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Named protein source</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">15 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Fact density</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">20 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Life stage explicit &amp; accurate</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">10 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Functional ingredients named</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">15 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">AAFCO statement visible</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">10 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Attribute completeness</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">15 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">35 pts</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Claim specificity &amp; clarity</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">30 pts</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">Occasion &amp; intent relevance</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#94A3B8">—</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">20 pts</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#374151">No prohibited superlatives</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">15 pts</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;text-align:center;color:#374151">15 pts</td>
+          </tr>
+        </table>
+        """)
+
+        _md("""
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+                    color:#1E40AF;margin-bottom:.5rem">
+          Score tiers
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <tr style="background:#F8FAFC">
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Range</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Tier</th>
+            <th style="padding:6px 10px;text-align:left;border:1px solid #E2E8F0;color:#475569">Meaning</th>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;font-weight:600;color:#059669">80 – 100</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0">✅ AI-Ready</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Fully compliant, optimised for Rufus &amp; Sparky</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;font-weight:600;color:#D97706">60 – 79</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0">🟡 Needs Attention</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Minor violations present, improvement recommended</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;font-weight:600;color:#EA580C">40 – 59</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0">🟠 At Risk</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Multiple violations, visibility impacted</td>
+          </tr>
+          <tr style="background:#FAFAFA">
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;font-weight:600;color:#DC2626">0 – 39</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0">🔴 Critical</td>
+            <td style="padding:6px 10px;border:1px solid #E2E8F0;color:#475569">Serious violations, immediate action required</td>
+          </tr>
+        </table>
+        """)
+
 # ── Tab labels ────────────────────────────────────────────────────────────────
 
 result = st.session_state.get("current_result")
