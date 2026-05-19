@@ -467,8 +467,16 @@ with st.container(border=True):
         st.markdown('<p style="font-size:12px;color:#374151;font-weight:500;margin-bottom:4px">&nbsp;</p>', unsafe_allow_html=True)
         run_analysis = st.button("▶ Analyze shelf", type="primary", use_container_width=True)
 
-# ── Scoring Logic expander (sits between controls and tabs, always visible) ───
-with st.expander("📐 Scoring Logic — click to expand", expanded=False):
+# ── Scoring Logic toggle (plain button avoids Streamlit Cloud icon font bug) ──
+if "show_scoring" not in st.session_state:
+    st.session_state["show_scoring"] = False
+
+_, _sc_col = st.columns([3, 1])
+with _sc_col:
+    if st.button("📐 Scoring Logic", use_container_width=True, key="scoring_toggle"):
+        st.session_state["show_scoring"] = not st.session_state["show_scoring"]
+
+if st.session_state["show_scoring"]:
         _md("""
         <div style="font-size:13px;color:#1E40AF;font-weight:700;margin-bottom:1rem;
                     padding-bottom:.5rem;border-bottom:2px solid #EFF6FF">
